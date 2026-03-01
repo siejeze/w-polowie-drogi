@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Śladami Goryczki — spacer po Koninie | W Połowie Drogi</title>
+    <meta name="description" content="Trasa spacerowa śladami bohaterów powieści W Połowie Drogi. Odkryj XVIII-wieczny Konin z książką w ręce.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-bg-deep:     #0c1210;
+            --color-bg:          #111c19;
+            --color-bg-card:     #162220;
+            --color-bg-light:    #1a2926;
+            --color-accent:      #8a9a6c;
+            --color-accent-dim:  #7a8e60;
+            --color-accent-glow: #bdd098;
+            --color-text:        #d0c8b8;
+            --color-text-dim:    #a09880;
+            --color-text-bright: #e8e0d0;
+            --color-heading:     #d4cbb8;
+            --color-gold:        #b8a472;
+            --color-gold-dim:    #8a7a52;
+            --color-parchment:   #d4c8a8;
+            --color-parchment-dark: #2a2418;
+            --color-border:      rgba(138, 154, 108, 0.18);
+
+            --font-display: 'Cinzel', serif;
+            --font-body:    'Cormorant Garamond', serif;
+            --font-reading: 'Crimson Pro', serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 18px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg-deep);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Grain */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.5;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .page-header {
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+            background: linear-gradient(180deg, #0c1210 0%, #1a2e22 100%);
+        }
+
+        .back-link {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-text-dim);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover { color: var(--color-accent-glow); }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 400;
+            color: var(--color-heading);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.8rem;
+        }
+
+        .page-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--color-text-dim);
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           ROUTE INTRO
+           ============================================ */
+        .route-intro {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(180deg, #1a2e22 0%, #1e3328 100%);
+        }
+
+        .route-intro p {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--color-text);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        /* ============================================
+           TIMELINE / ROUTE
+           ============================================ */
+        .route {
+            padding: 3rem 1.5rem 5rem;
+            background: linear-gradient(180deg, #1e3328 0%, #1a2a22 20%, #201f18 50%, #182230 80%, #0c1210 100%);
+        }
+
+        .route-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Vertical line */
+        .route-container::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--color-accent-dim), var(--color-accent-dim) 80%, transparent);
+        }
+
+        /* ============================================
+           STOP CARD
+           ============================================ */
+        .stop {
+            position: relative;
+            padding-left: 65px;
+            margin-bottom: 2rem;
+        }
+
+        .stop-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 49px;
+            height: 49px;
+            border-radius: 50%;
+            border: 1px solid var(--color-accent-dim);
+            background: var(--color-bg-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            color: var(--color-accent-glow);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .stop.open .stop-number {
+            background: rgba(138, 154, 108, 0.15);
+            border-color: var(--color-accent-glow);
+            box-shadow: 0 0 15px rgba(138, 154, 108, 0.2);
+        }
+
+        .stop-card {
+            background: rgba(22, 34, 32, 0.6);
+            border: 1px solid var(--color-border);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .stop-card:hover {
+            border-color: rgba(138, 154, 108, 0.3);
+        }
+
+        .stop.open .stop-card {
+            border-color: rgba(138, 154, 108, 0.25);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .stop-header {
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .stop-header:hover {
+            background: rgba(138, 154, 108, 0.05);
+        }
+
+        .stop-name {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            color: var(--color-heading);
+        }
+
+        .stop-name-sub {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: var(--color-text-dim);
+            font-style: italic;
+            margin-top: 0.2rem;
+        }
+
+        .stop-toggle {
+            font-size: 1rem;
+            color: var(--color-accent-dim);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .stop.open .stop-toggle {
+            transform: rotate(180deg);
+            color: var(--color-accent-glow);
+        }
+
+        /* Expandable content */
+        .stop-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stop.open .stop-body {
+            max-height: 800px;
+        }
+
+        .stop-content {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .stop-location {
+            font-family: var(--font-display);
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-accent-glow);
+            margin-bottom: 0.8rem;
+        }
+
+        .stop-description {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.85;
+            color: var(--color-text);
+            margin-bottom: 1.2rem;
+        }
+
+        .stop-quote {
+            font-family: var(--font-reading);
+            font-size: 0.95rem;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.9;
+            color: var(--color-parchment);
+            padding: 1rem 1.2rem;
+            border-left: 2px solid var(--color-gold-dim);
+            background: rgba(42, 36, 24, 0.4);
+        }
+
+        /* ============================================
+           MAP LINK
+           ============================================ */
+        .map-section {
+            text-align: center;
+            padding: 3rem 1.5rem 4rem;
+            background: linear-gradient(180deg, #0c1210 0%, var(--color-bg-deep) 100%);
+        }
+
+        .map-link {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-accent-glow);
+            border: 1px solid var(--color-accent-dim);
+            padding: 0.9rem 2.5rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            margin-bottom: 1rem;
+        }
+
+        .map-link:hover {
+            background: rgba(138, 154, 108, 0.1);
+            border-color: var(--color-accent-glow);
+            box-shadow: 0 0 30px rgba(138, 154, 108, 0.15);
+        }
+
+        .map-note {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+            font-style: italic;
+            margin-top: 0.8rem;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--color-border);
+            background: var(--color-bg-deep);
+        }
+
+        footer p {
+            font-family: var(--font-display);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-text-dim);
+        }
+
+        footer a {
+            color: var(--color-text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover { color: var(--color-accent-glow); }
+
+        /* ============================================
+           REVEAL
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+
+            .route-container::before { left: 18px; }
+
+            .stop { padding-left: 50px; }
+
+            .stop-number {
+                width: 37px;
+                height: 37px;
+                font-size: 0.65rem;
+            }
+
+            .stop-header { padding: 1rem 1.2rem; }
+            .stop-content { padding: 0 1.2rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <a href="index.html" class="back-link">← Wróć do strony książki</a>
+        <h1 class="page-title">Śladami Goryczki</h1>
+        <p class="page-subtitle">
+            Spacer po XVIII-wiecznym Koninie z książką w ręce.
+            Osiem przystanków, jedna historia.
+        </p>
+    </header>
+
+    <!-- INTRO -->
+    <div class="route-intro">
+        <p>
+            Ta trasa prowadzi przez miejsca, w których toczy się akcja powieści
+            „W Połowie Drogi". Zaczynasz na Rynku, schodzisz ku Warcie,
+            wracasz na skarpę i kończysz na wzgórzu farnym —
+            między wodą a kamieniem, dokładnie jak bohaterowie książki.
+            Kliknij w każdy przystanek, żeby poznać jego historię.
+        </p>
+    </div>
+
+    <!-- ROUTE -->
+    <div class="route">
+        <div class="route-container">
+
+            <!-- 1. RYNEK -->
+            <div class="stop reveal" data-stop="1">
+                <div class="stop-number">1</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Rynek</div>
+                            <div class="stop-name-sub">Plac Wolności</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 Plac Wolności, Konin</div>
+                            <div class="stop-description">
+                                Serce handlowe miasta, gdzie w powieści znajduje się kram Wojtala
+                                i gdzie wybucha panika związana z oskarżeniami o czary.
+                                To tutaj widać największy kontrast między codziennym życiem mieszczan
+                                a grozą nadchodzącej epidemii.
+                            </div>
+                            <div class="stop-quote">
+                                „Rynek tętnił życiem, choć był to puls gorączkowy.
+                                Przekupki krzyczały głośniej niż zwykle, jakby chciały zagłuszyć lęk,
+                                który osiadał na twarzach jak pył z wyschniętego błota."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. DOM ZEMEŁKI -->
+            <div class="stop reveal" data-stop="2">
+                <div class="stop-number">2</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Dom Zemełki</div>
+                            <div class="stop-name-sub">Najstarsza kamienica w Koninie</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 Plac Wolności 16, narożnik ul. Przechodniej</div>
+                            <div class="stop-description">
+                                Najstarsza murowana kamienica w Koninie.
+                                W osiemnastowiecznych realiach powieści wyróżnia się trwałością
+                                na tle drewnianej zabudowy. Symbolizuje dawną potęgę miasta
+                                i naukowe ambicje Jana Zemełki, które kontrastują z ludowymi zabobonami.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. ULICA WODNA -->
+            <div class="stop reveal" data-stop="3">
+                <div class="stop-number">3</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Ulica Wodna</div>
+                            <div class="stop-name-sub">Gdzie mgła utrzymuje się najdłużej</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 Ulica Wodna, w dół od Placu Wolności ku Warcie</div>
+                            <div class="stop-description">
+                                Jedna z najstarszych ulic miasta, która swoją nazwę zawdzięcza
+                                bezpośredniemu sąsiedztwu Warty. W powieści to miejsce o mrocznej
+                                przeszłości — tutaj w XVII wieku, podczas wielkiej zarazy, grzebano
+                                zmarłych w pośpiechu, co rzuca cień na współczesne wydarzenia w książce.
+                                To ulica „wilgotna", gdzie mgła znad rzeki utrzymuje się najdłużej,
+                                a domy zdają się nasiąkać wodą i historią.
+                            </div>
+                            <div class="stop-quote">
+                                „Woda nigdy nie opuściła tej ulicy, nawet gdy rzeka wracała do koryta.
+                                Zostawała w murach, w piwnicach i w pamięci tych, którzy wiedzieli,
+                                co kryje się pod brukiem Ulicy Wodnej od czasów ostatniego moru."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. BULWAR NADWARCIAŃSKI -->
+            <div class="stop reveal" data-stop="4">
+                <div class="stop-number">4</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Bulwar Nadwarciański</div>
+                            <div class="stop-name-sub">Dawna przeprawa i bród</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 Wybrzeże Józefa Piłsudskiego, zejście do rzeki</div>
+                            <div class="stop-description">
+                                Tu zaczyna się historia miasta. W powieści Warta to żywioł,
+                                który „idzie z południa na północ i wije się jak wąż".
+                                To tutaj znajdował się bród, przez który kupcy musieli przeprawiać się
+                                na drugą stronę, i tutaj przycumowana jest barka Mikusia
+                                oraz karczma „Pod Białym Koniem".
+                            </div>
+                            <div class="stop-quote">
+                                „Najpierw była Warta. Szła z południa na północ, wiła się jak wąż.
+                                Na zakręcie, gdzie woda płynie najwolniej, osiadł piasek.
+                                Z piasku zrobiła się wyspa, z wyspy bród."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. PLAC ZAMKOWY -->
+            <div class="stop reveal" data-stop="5">
+                <div class="stop-number">5</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Plac Zamkowy</div>
+                            <div class="stop-name-sub">Dawniej zwany Garncarskim</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 Plac Zamkowy, pomiędzy Wartą a kościołem św. Bartłomieja</div>
+                            <div class="stop-description">
+                                Jedno z najbardziej klimatycznych miejsc w Koninie.
+                                Nazwa „Garncarski" wzięła się stąd, że rzemieślnicy wykorzystywali
+                                tutejszą glinę z nadwarciańskich skarp do wyrobu naczyń.
+                                W powieści plac łączy świat sacrum z przyziemnym trudem mieszkańców
+                                i bliskością rzeki. Na krawędzi skarpy stoi Słup Milowy,
+                                a pod ziemią kryją się fundamenty dawnego zamku.
+                            </div>
+                            <div class="stop-quote">
+                                „Plac Zamkowy, który jedni zwali Garncarskim, bo glina tu była tłusta i dobra,
+                                opadał gwałtownie ku Warcie. To tutaj, na styku ludzkiego trudu i świętego kamienia,
+                                działy się rzeczy, o których mieszczanie woleli milczeć przy świetle dnia."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. SŁUP MILOWY -->
+            <div class="stop reveal" data-stop="6">
+                <div class="stop-number">6</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Słup Milowy</div>
+                            <div class="stop-name-sub">Tzw. Baba</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 Plac Zamkowy, obok kościoła św. Bartłomieja</div>
+                            <div class="stop-description">
+                                Najstarszy znak drogowy w Polsce i centralny punkt mistyczny powieści.
+                                W fabule Słup jest niemym świadkiem historii, wokół którego narastają
+                                legendy o Piotrze Włostowicu i „nieczystych" siłach.
+                                To tutaj Szymon Goryczka szuka śladów zaginionych osób.
+                            </div>
+                            <div class="stop-quote">
+                                „Kamień był tu wcześniej. Palatyn tylko nadał mu imię.
+                                Więc ociosał, opiłował, wyrżnął krzyże.
+                                Konin wyrósł wokół niego jak mech wokół kości."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. KOŚCIÓŁ ŚW. BARTŁOMIEJA -->
+            <div class="stop reveal" data-stop="7">
+                <div class="stop-number">7</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Kościół św. Bartłomieja</div>
+                            <div class="stop-name-sub">Fara</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 ul. Kościelna 1, Konin</div>
+                            <div class="stop-description">
+                                Gotycka świątynia dominująca nad miastem. W książce to miejsce pełne mroku
+                                i tajemnic — w jej cieniu znajduje się cmentarz, na którym dochodzi
+                                do niepokojących zdarzeń, oraz zegary słoneczne odmierzające czas
+                                mieszkańcom nękanym przez zarazę.
+                            </div>
+                            <div class="stop-quote">
+                                „Fara stała na górce, jakby chciała uciec przed wodą,
+                                która co wiosnę brała miasto w posiadanie."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. KAPLICA ZEMEŁKI -->
+            <div class="stop reveal" data-stop="8">
+                <div class="stop-number">8</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Kaplica Zemełki</div>
+                            <div class="stop-name-sub">Przy Farze — i to, co pod nią</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 Przy północnej ścianie kościoła św. Bartłomieja</div>
+                            <div class="stop-description">
+                                Renesansowa kaplica o charakterystycznym, bogato zdobionym sklepieniu.
+                                W powieści staje się kluczowa, gdy bohaterowie odkrywają,
+                                że to właśnie pod jej posadzką, w kryptach,
+                                ukryty jest tajemniczy Rejestr pochówków nieczystych.
+                            </div>
+                            <div class="stop-quote">
+                                „Weszli do kaplicy Zemełki. Światło świecy pełzało po stiukach na sklepieniu,
+                                wyciągając z mroku twarze aniołów,
+                                które zdawały się krzywić w niemym ostrzeżeniu."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. KLASZTOR REFORMATÓW -->
+            <div class="stop reveal" data-stop="9">
+                <div class="stop-number">9</div>
+                <div class="stop-card">
+                    <div class="stop-header" onclick="toggleStop(this)">
+                        <div>
+                            <div class="stop-name">Klasztor Reformatów</div>
+                            <div class="stop-name-sub">Za mostem, na Przedmieściu Kolskim</div>
+                        </div>
+                        <div class="stop-toggle">▾</div>
+                    </div>
+                    <div class="stop-body">
+                        <div class="stop-content">
+                            <div class="stop-location">📍 ul. Reformacka 2, Przedmieście Kolskie</div>
+                            <div class="stop-description">
+                                Aby tu dotrzeć, trzeba przejść przez most na drugą stronę starego koryta Warty.
+                                W powieści to królestwo brata Hilarego.
+                                Miejsce to, ze swoim wirydarzem i ogrodem pełnym ziół
+                                (w tym trującej belladonny), stanowi przeciwwagę dla zgiełku miasta,
+                                ale kryje własne, zakonne sekrety.
+                            </div>
+                            <div class="stop-quote">
+                                „Klasztor reformatów bielił się na przedmieściu jak kość rzucona w zieloną trawę.
+                                Tu czas płynął inaczej, odmierzany nie handlem,
+                                a modlitwą i szeptem liści w wirydarzu."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /route-container -->
+    </div><!-- /route -->
+
+    <!-- MAP LINK -->
+    <div class="map-section">
+        <!-- 
+             MAPA GOOGLE — jeśli chcesz dodać:
+             1. Wejdź na google.com/maps
+             2. Stwórz "Moją mapę" z pinezkami w tych miejscach
+             3. Udostępnij i skopiuj link
+             4. Wklej go w href poniżej
+        -->
+        <a href="https://www.google.com/maps/dir/Plac+Wolno%C5%9Bci,+Konin/Ulica+Wodna,+Konin/Wybrze%C5%BCe+J%C3%B3zefa+Pi%C5%82sudskiego,+Konin/Plac+Zamkowy,+Konin/Ko%C5%9Bci%C3%B3%C5%82+%C5%9Bw.+Bart%C5%82omieja,+Konin/ul.+Reformacka+2,+Konin" target="_blank" class="map-link">
+            Otwórz trasę w Google Maps
+        </a>
+        <p class="map-note">Cała trasa to ok. 2 km — godzina spokojnego spaceru</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><a href="index.html">W Połowie Drogi</a> · Anna Strzelecka · © 2025</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Toggle stop cards
+        function toggleStop(header) {
+            const stop = header.closest('.stop');
+            stop.classList.toggle('open');
+        }
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
