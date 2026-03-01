@@ -1090,7 +1090,7 @@
         </div>
     </section>
 
-<!-- =============================================
+    <!-- =============================================
          O KSIĄŻCE
          ============================================= -->
     <section class="about-book" id="about">
@@ -1098,6 +1098,7 @@
             <div class="section-label">Konin, lato 1737</div>
             <h2 class="section-title">O książce</h2>
             <div class="section-divider"></div>
+
             <div class="about-text">
                 <p>
                     Lato jest duszne, a nadwarciańskie łąki spowija mgła,
@@ -1150,6 +1151,7 @@
     <!-- =============================================
          AUDIO — POSŁUCHAJ FRAGMENTU
          ============================================= -->
+    <!-- SEKCJA AUDIO — ODKOMENTUJ GDY BĘDZIE GOTOWY PLIK fragment.mp3
     <section class="audio-section" id="audio">
         <div class="container reveal">
             <div class="section-label">Posłuchaj</div>
@@ -1158,12 +1160,6 @@
 
             <div class="audio-player">
                 <p>Autorka czyta fragment pierwszego rozdziału</p>
-
-                <!-- 
-                     AUDIO — PODMIEŃ ŚCIEŻKĘ DO PLIKU MP3
-                     Wrzuć plik .mp3 do tego samego folderu 
-                     i zmień "fragment.mp3" na nazwę swojego pliku
-                -->
                 <audio controls preload="none">
                     <source src="fragment.mp3" type="audio/mpeg">
                     Twoja przeglądarka nie obsługuje odtwarzacza audio.
@@ -1171,6 +1167,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- =============================================
          TRAILER WIDEO
@@ -1182,22 +1179,7 @@
             <div class="section-divider"></div>
 
             <div class="trailer-frame">
-                <!-- 
-                     OPCJA A: PLIK MP4 — TRZYMASZ TRAILER OBOK STRONY
-                     Zmień "trailer.mp4" na nazwę swojego pliku
-                -->
-                <video controls preload="none" poster="okladka.jpg" style="width:100%; height:100%; position:absolute; top:0; left:0; object-fit:cover;">
-                    <source src="trailer.mp4" type="video/mp4">
-                    Twoja przeglądarka nie obsługuje wideo.
-                </video>
-
-                <!-- 
-                     OPCJA B: YOUTUBE — jeśli przerzucisz trailer na YouTube:
-                     1. Zakomentuj <video> powyżej
-                     2. Odkomentuj iframe poniżej
-                     3. Zamień VIDEO_ID na ID z adresu YouTube
-                -->
-                <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen loading="lazy"></iframe> -->
+                <iframe src="https://www.youtube.com/embed/bcCD_lL6Q0c" allowfullscreen loading="lazy" style="width:100%; height:100%; position:absolute; top:0; left:0; border:none;"></iframe>
             </div>
         </div>
     </section>
@@ -1268,29 +1250,14 @@
 
             <div class="author-layout">
                 <div class="author-photo-wrap">
-                    <!-- 
-                         ZDJĘCIE AUTORKI — PODMIEŃ ŚCIEŻKĘ
-                         Wrzuć zdjęcie do folderu i zmień "autorka.jpg"
-                    -->
-                   <img src="autorka.jpg" alt="Anna Strzelecka" class="author-photo">
-                  
+                    <img src="autorka.jpg" alt="Anna Strzelecka" class="author-photo">
                 </div>
 
                 <div>
                     <div class="author-name">Anna Strzelecka</div>
                     <div class="author-bio">
-                        <!-- EDYTUJ BIO TUTAJ -->
                         <p>
-                            Dorąt autorka literatury dla dzieci i młodzieży, wyróżniona w prestiżowym
-konkursie Książka Roku 2008 Polskiej Sekcji IBBY. Przez lata budowała literackie światy
-oparte na empatii, bezpieczeństwie i zrozumieniu dziecięcych emocji, w 2025 wydała
-serię wyciszających opowieści dla najmłodszych zatytułowaną „Pa-pa, dniu”.
-W swojej pierwszej powieści dla dorosłego odbiorcy wykonuje zwrot ku mrocznym
-zakamarkom historii i ludzkiej natury i zabiera czytelników do osiemnastowiecznego
-Konina, swojego rodzinnego miasta. I choć tym razem wykorzystuje precyzyjną z natury
-formę kryminału – z dowodami, przesłuchaniami i rozwiązaniem – to jednocześnie
-pokazuje, że paradoksalnie na pytanie, kto zawinił, czasem bardzo trudno znaleźć jedną
-właściwą odpowiedź.„W Połowie Drogi" to literacki powrót
+                            „W Połowie Drogi" to literacki powrót
                             do rodzinnego miasta — przez archiwa, legendy i wyobraźnię.
                             Pierwsza z trzech powieści, w których historyczny Konin ożywa
                             na nowo.
@@ -1340,18 +1307,7 @@ właściwą odpowiedź.„W Połowie Drogi" to literacki powrót
             <h2 class="section-title">Zamów egzemplarz</h2>
             <div class="section-divider"></div>
 
-            <!-- 
-                 FORMULARZ — UWAGA:
-                 Ten formularz działa z Formspree.io (darmowy plan = 50 wiadomości/mies.)
-                 1. Zarejestruj się na formspree.io
-                 2. Stwórz nowy formularz
-                 3. Skopiuj ID formularza
-                 4. Zamień TWOJE_FORMSPREE_ID w action poniżej
-
-                 ALTERNATYWA: Jeśli nie chcesz Formspree, zamień action na
-                 "mailto:twoj@email.com" — otworzy klienta poczty.
-            -->
-            <form class="contact-form" action="https://formspree.io/f/TWOJE_FORMSPREE_ID" method="POST">
+            <form class="contact-form" action="https://formsubmit.co/annastrzelecka.mail@gmail.com" method="POST">
                 <div class="form-group">
                     <label for="name">Imię i nazwisko</label>
                     <input type="text" id="name" name="name" required>
@@ -1504,7 +1460,7 @@ właściwą odpowiedź.„W Połowie Drogi" to literacki powrót
     // pauses when trailer plays, resumes when trailer pauses/ends
     // ==========================================
     const bgMusic = document.getElementById('bg-music');
-    const trailerVideo = document.querySelector('.trailer-frame video');
+    const trailerVideo = document.querySelector('.trailer-frame iframe');
     let musicPlaying = false;
 
     function fadeAudio(audioEl, targetVol, duration, callback) {
