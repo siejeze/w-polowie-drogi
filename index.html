@@ -1310,10 +1310,19 @@
          ============================================= -->
     <section class="contact" id="order">
         <div class="container reveal">
-            <div class="section-label">Przedsprzedaż</div>
-            <h2 class="section-title">Zamów egzemplarz</h2>
+          <div class="section-label">Napisz do mnie</div>
+            <h2 class="section-title">Kontakt i zamówienia</h2>
             <div class="section-divider"></div>
-            <form class="contact-form" action="https://formsubmit.co/annastrzelecka.mail@gmail.com" method="POST">
+           <form class="contact-form" action="https://formsubmit.co/annastrzelecka.mail@gmail.com" method="POST">
+                <div class="form-group">
+                    <label for="subject">W jakiej sprawie piszesz?</label>
+                    <select id="subject" name="subject" onchange="document.getElementById('quantity-group').style.display = this.value === 'zamowienie' ? 'block' : 'none';">
+                        <option value="zamowienie">Chcę zamówić książkę</option>
+                        <option value="pytanie">Mam pytanie</option>
+                        <option value="wspolpraca">Propozycja współpracy</option>
+                        <option value="inne">Inne</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="name">Imię i nazwisko</label>
                     <input type="text" id="name" name="name" required>
@@ -1322,7 +1331,7 @@
                     <label for="email">Adres e-mail</label>
                     <input type="email" id="email" name="email" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="quantity-group">
                     <label for="quantity">Liczba egzemplarzy</label>
                     <select id="quantity" name="quantity">
                         <option value="1">1</option>
@@ -1333,12 +1342,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="message">Wiadomość (opcjonalnie)</label>
-                    <textarea id="message" name="message" placeholder="Np. dedykacja, pytanie o wysyłkę..."></textarea>
+                    <label for="message">Wiadomość</label>
+                    <textarea id="message" name="message" placeholder="Np. dedykacja, pytanie o wysyłkę, cokolwiek chcesz napisać..."></textarea>
                 </div>
-                <button type="submit" class="form-submit">Wyślij zamówienie</button>
+                <button type="submit" class="form-submit">Wyślij</button>
                 <p class="form-note">
-                    Odezwę się z potwierdzeniem i szczegółami płatności w ciągu 48 godzin.
+                    Odezwę się w ciągu 48 godzin.
                 </p>
             </form>
         </div>
