@@ -1245,25 +1245,173 @@
     </section>
 
 
-     <!-- =============================================
-         AUDIO — POSŁUCHAJ FRAGMENTU
-         ============================================= -->
-    <!-- SEKCJA AUDIO — ODKOMENTUJ GDY BĘDZIE GOTOWY PLIK fragment.mp3 -->
-    <section class="audio-section" id="audio">
-        <div class="container reveal">
-            <div class="section-label">Posłuchaj</div>
-            <h2 class="section-title">Fragment czytany</h2>
-            <div class="section-divider"></div>
-
-            <div class="audio-player">
-                <p>Fragment pierwszego rozdziału (w przygotowaniu)</p>
-                <audio controls preload="none">
-                    <source src="fragment.mp3" type="audio/mpeg">
-                    Twoja przeglądarka nie obsługuje odtwarzacza audio.
-                </audio>
+    <!-- =============================================
+     AUDIO — POSŁUCHAJ FRAGMENTU
+     ============================================= -->
+<section class="audio-section" id="audio">
+    <div class="container reveal">
+        <div class="section-label">Posłuchaj</div>
+        <h2 class="section-title">Fragment czytany</h2>
+        <div class="section-divider"></div>
+        <div class="audio-player">
+            <p>Fragment pierwszego rozdziału</p>
+            <iframe
+                id="yt-player"
+                src="https://www.youtube.com/embed/7XvYvyFd0Oc?enablejsapi=1"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                style="position:absolute;width:0;height:0;border:0;overflow:hidden;"
+                title="Fragment audiobooka"
+            ></iframe>
+            <div class="yt-audio-controls">
+                <button class="yt-play-btn" id="yt-play-btn" aria-label="Odtwórz / Pauza">
+                    <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5,3 19,12 5,21"/>
+                    </svg>
+                    <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                        <rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>
+                    </svg>
+                </button>
+                <div class="yt-progress-wrap" id="yt-progress-wrap">
+                    <div class="yt-progress-bar" id="yt-progress-bar"></div>
+                </div>
+                <span class="yt-time" id="yt-time">0:00</span>
             </div>
+            <a href="https://youtu.be/7XvYvyFd0Oc" target="_blank" rel="noopener noreferrer" class="yt-link">
+                ▶ Otwórz w YouTube
+            </a>
         </div>
-    </section>
+    </div>
+</section>
+
+<style>
+.yt-audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 0.6rem 1.2rem;
+    margin: 1.5rem auto 1rem;
+    max-width: 420px;
+}
+.yt-play-btn {
+    background: none;
+    border: none;
+    color: var(--gold, #c9a84c);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+.yt-play-btn:hover { transform: scale(1.15); }
+.yt-progress-wrap {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+.yt-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--gold, #c9a84c);
+    border-radius: 2px;
+    transition: width 0.3s linear;
+}
+.yt-time {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    min-width: 3.2em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+.yt-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gold, #c9a84c);
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+.yt-link:hover { opacity: 1; text-decoration: underline; }
+</style>
+
+<script>
+(function() {
+    // Ładowanie YouTube IFrame API
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+
+    var player, isPlaying = false, pollTimer;
+    var playBtn   = document.getElementById('yt-play-btn');
+    var playIcon  = document.getElementById('play-icon');
+    var pauseIcon = document.getElementById('pause-icon');
+    var bar       = document.getElementById('yt-progress-bar');
+    var timeEl    = document.getElementById('yt-time');
+    var progWrap  = document.getElementById('yt-progress-wrap');
+
+    window.onYouTubeIframeAPIReady = function() {
+        player = new YT.Player('yt-player', {
+            events: {
+                onStateChange: function(e) {
+                    if (e.data === YT.PlayerState.PLAYING) {
+                        isPlaying = true;
+                        toggleIcons(true);
+                        startPoll();
+                    } else {
+                        isPlaying = false;
+                        toggleIcons(false);
+                        stopPoll();
+                    }
+                }
+            }
+        });
+    };
+
+    function toggleIcons(playing) {
+        playIcon.style.display  = playing ? 'none' : 'block';
+        pauseIcon.style.display = playing ? 'block' : 'none';
+    }
+
+    function fmt(s) {
+        var m = Math.floor(s / 60);
+        var sec = Math.floor(s % 60);
+        return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    function startPoll() {
+        stopPoll();
+        pollTimer = setInterval(function() {
+            if (!player || !player.getDuration) return;
+            var dur = player.getDuration();
+            var cur = player.getCurrentTime();
+            bar.style.width = (dur ? (cur / dur * 100) : 0) + '%';
+            timeEl.textContent = fmt(cur);
+        }, 300);
+    }
+    function stopPoll() { clearInterval(pollTimer); }
+
+    playBtn.addEventListener('click', function() {
+        if (!player || !player.getPlayerState) return;
+        if (isPlaying) { player.pauseVideo(); }
+        else { player.playVideo(); }
+    });
+
+    progWrap.addEventListener('click', function(e) {
+        if (!player || !player.getDuration) return;
+        var rect = progWrap.getBoundingClientRect();
+        var pct = (e.clientX - rect.left) / rect.width;
+        player.seekTo(pct * player.getDuration(), true);
+    });
+})();
+</script>
    
 
 
