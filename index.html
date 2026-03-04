@@ -985,48 +985,71 @@
         /* ============================================
            RESPONSIVE
            ============================================ */
-   @media (max-width: 768px) {
+ @media (max-width: 768px) {
+            section {
+                padding: 3.5rem 1.2rem;
+            }
 
-    section { padding: 3.5rem 1.2rem; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 3rem 0 1.5rem;
+            }
 
-    nav ul {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 3rem 0 1.5rem;
-    }
+            nav ul.open {
+                display: flex;
+            }
 
-    nav ul.open { display: flex; }
+            .nav-toggle {
+                display: block;
+            }
 
-    .nav-toggle { display: block; }
+            .hero-cover {
+                max-width: 250px;
+            }
 
-    .hero {
-        background: url('okladka1.jpg') center/cover no-repeat;
-    }
+            .hero-trilogy-ghost {
+                display: none;
+            }
 
-    .hero-cover { max-width: 250px; }
+            .author-layout {
+                flex-direction: column;
+                text-align: center;
+            }
 
-    .hero-trilogy-ghost { display: none; }
+            .series-volumes {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .author-layout {
-        flex-direction: column;
-        text-align: center;
-    }
+            .series-vol {
+                width: 100%;
+                max-width: 250px;
+            }
 
-    .series-volumes {
-        flex-direction: column;
-        align-items: center;
-    }
+            .excerpt-scroll {
+                padding: 2rem 1.5rem;
+            }
 
-    .series-vol { width: 100%; max-width: 250px; }
+            .locations-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
 
-    .excerpt-scroll { padding: 2rem 1.5rem; }
+        @media (max-width: 420px) {
+            html {
+                font-size: 16px;
+            }
 
-    .locations-grid { grid-template-columns: 1fr 1fr; }
-}
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
+
 <body>
 
 <!-- =============================================
