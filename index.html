@@ -984,23 +984,25 @@
         /* ============================================
            RESPONSIVE
            ============================================ */
-        @media (max-width: 768px) {
-            section { padding: 3.5rem 1.2rem; }
+       @media (max-width: 768px) {
 
-            nav ul {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-                padding: 3rem 0 1.5rem;
-            }
+    section { padding: 3.5rem 1.2rem; }
 
-            nav ul.open { display: flex; }
-            .nav-toggle { display: block; }
+    nav ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 3rem 0 1.5rem;
+    }
 
-            .hero-cover { max-width: 250px; }
+    .hero-cover {
+        height: 45vh;
+    }
 
-            .hero-trilogy-ghost { display: none; }
+    .hero-trilogy-ghost { display: none; }
+
+}
 
             .author-layout {
                 flex-direction: column;
