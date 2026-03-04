@@ -985,7 +985,7 @@
         /* ============================================
            RESPONSIVE
            ============================================ */
-     @media (max-width: 768px) {
+   @media (max-width: 768px) {
 
     section { padding: 3.5rem 1.2rem; }
 
@@ -997,6 +997,8 @@
         padding: 3rem 0 1.5rem;
     }
 
+    .nav-toggle { display: block; }
+
     .hero-cover {
         height: auto;
         width: 85%;
@@ -1005,25 +1007,29 @@
 
     .hero-trilogy-ghost { display: none; }
 
+    .author-layout {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .series-volumes {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .series-vol { 
+        width: 100%; 
+        max-width: 250px; 
+    }
+
+    .excerpt-scroll { 
+        padding: 2rem 1.5rem; 
+    }
+
+    .locations-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
-            .author-layout {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .series-volumes {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .series-vol { width: 100%; max-width: 250px; }
-
-            .excerpt-scroll { padding: 2rem 1.5rem; }
-
-            .locations-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
 
         @media (max-width: 420px) {
             html { font-size: 16px; }
