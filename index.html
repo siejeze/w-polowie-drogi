@@ -1059,9 +1059,7 @@
     <!-- =============================================
          HERO
          ============================================= -->
-   <!-- =============================================
-     HERO
-============================================= -->
+ 
 <section class="hero" id="hero">
     <canvas id="dust" class="hero-dust"></canvas>
     <div class="hero-content">
@@ -1072,12 +1070,12 @@
             </div>
             <div class="hero-trilogy-main">
                 <picture>
-                    <!-- Dla telefonów (max 768px) - mała okładka -->
-                    <source srcset="okladka1.jpg" media="(max-width: 768px)">
-                    <!-- Dla komputerów (min 769px) - duża okładka -->
-                    <source srcset="okladka.jpg" media="(min-width: 769px)">
-                    <!-- Obraz zapasowy (dla bardzo starych przeglądarek) -->
-                    <img src="okladka.jpg" alt="W Połowie Drogi — okładka" class="hero-cover">
+                    <!-- Dla telefonów - mała okładka (to będzie działać na 99% urządzeń) -->
+                    <source srcset="okladka1.jpg" media="(max-width: 900px)">
+                    <!-- Dla komputerów - duża okładka -->
+                    <source srcset="okladka.jpg" media="(min-width: 901px)">
+                    <!-- Obraz zapasowy -->
+                    <img src="okladka1.jpg" alt="W Połowie Drogi — okładka" class="hero-cover">
                 </picture>
             </div>
             <div class="hero-trilogy-ghost hero-trilogy-right">
@@ -1095,7 +1093,6 @@
         <a href="#order" class="hero-cta">Zamów egzemplarz w przedsprzedaży</a>
     </div>
 </section>
-
 
  <!-- =============================================
          TRAILER WIDEO
