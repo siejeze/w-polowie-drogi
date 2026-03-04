@@ -997,24 +997,15 @@
         padding: 3rem 0 1.5rem;
     }
 
-  .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 1.6rem;
-    cursor: pointer;
-    position: absolute;
-    right: 1.5rem;
-    top: 1rem;
-    z-index: 1000;
-}
+    nav ul.open { display: flex; }
 
-    .hero-cover {
-        height: auto;
-        width: 85%;
-        max-width: 320px;
+    .nav-toggle { display: block; }
+
+    .hero {
+        background: url('okladka1.jpg') center/cover no-repeat;
     }
+
+    .hero-cover { max-width: 250px; }
 
     .hero-trilogy-ghost { display: none; }
 
@@ -1028,24 +1019,12 @@
         align-items: center;
     }
 
-    .series-vol { 
-        width: 100%; 
-        max-width: 250px; 
-    }
+    .series-vol { width: 100%; max-width: 250px; }
 
-    .excerpt-scroll { 
-        padding: 2rem 1.5rem; 
-    }
+    .excerpt-scroll { padding: 2rem 1.5rem; }
 
-    .locations-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .locations-grid { grid-template-columns: 1fr 1fr; }
 }
-
-        @media (max-width: 420px) {
-            html { font-size: 16px; }
-            .locations-grid { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
