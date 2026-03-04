@@ -222,8 +222,7 @@
             padding: 6rem 1.5rem 4rem;
             position: relative;
             overflow: hidden;
-            background: 
-                url('okladka.jpg') center/cover no-repeat;
+            background: url('okladka1.jpg') center/cover no-repeat;
         }
 
         .hero::before {
@@ -1098,14 +1097,12 @@
                 <span class="hero-ghost-label">Tom II</span>
             </div>
             <div class="hero-trilogy-main">
-                <picture>
-                    <!-- Dla telefonów - mała okładka (to będzie działać na 99% urządzeń) -->
-                    <source srcset="okladka1.jpg" media="(max-width: 900px)">
-                    <!-- Dla komputerów - duża okładka -->
-                    <source srcset="okladka.jpg" media="(min-width: 901px)">
-                    <!-- Obraz zapasowy -->
-                    <img src="okladka1.jpg" alt="W Połowie Drogi — okładka" class="hero-cover">
-                </picture>
+            <picture>
+    <source srcset="okladka1.jpg" media="(max-width: 768px)">
+    <source srcset="okladka.jpg" media="(min-width: 769px)">
+    <img src="okladka1.jpg" alt="W Połowie Drogi — okładka" class="hero-cover">
+</picture>
+                
             </div>
             <div class="hero-trilogy-ghost hero-trilogy-right">
                 <img src="okladka.jpg" alt="Tom III — wkrótce" class="hero-cover-ghost">
