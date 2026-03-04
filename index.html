@@ -197,17 +197,18 @@
 
         nav a:hover { color: var(--color-accent-glow); }
 
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--color-text);
-            font-size: 1.5rem;
-            cursor: pointer;
-            position: absolute;
-            right: 1.5rem;
-            top: 1rem;
-        }
+       .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;     /* jasny kolor, żeby był widoczny */
+    font-size: 1.6rem;
+    cursor: pointer;
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    z-index: 999;       /* żeby był nad tłem hero */
+}
 
         /* ============================================
            HERO SECTION
