@@ -1280,30 +1280,37 @@
         <div class="section-divider"></div>
         <div class="audio-player">
             <p>Rozdział 1</p>
-            <audio id="audio-fragment" preload="metadata">
-                <source src="fragment.mp3" type="audio/mpeg">
-                Twoja przeglądarka nie obsługuje odtwarzania audio.
-            </audio>
-            <div class="frag-audio-controls">
-                <button class="frag-play-btn" id="frag-play-btn" aria-label="Odtwórz / Pauza">
-                    <svg id="frag-play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <iframe
+                id="yt-player"
+                src="https://www.youtube.com/embed/7XvYvyFd0Oc?enablejsapi=1"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                style="position:absolute;width:0;height:0;border:0;overflow:hidden;"
+                title="Fragment audiobooka"
+            ></iframe>
+            <div class="yt-audio-controls">
+                <button class="yt-play-btn" id="yt-play-btn" aria-label="Odtwórz / Pauza">
+                    <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <polygon points="5,3 19,12 5,21"/>
                     </svg>
-                    <svg id="frag-pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                    <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
                         <rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>
                     </svg>
                 </button>
-                <div class="frag-progress-wrap" id="frag-progress-wrap">
-                    <div class="frag-progress-bar" id="frag-progress-bar"></div>
+                <div class="yt-progress-wrap" id="yt-progress-wrap">
+                    <div class="yt-progress-bar" id="yt-progress-bar"></div>
                 </div>
-                <span class="frag-time" id="frag-time">0:00 / 0:00</span>
+                <span class="yt-time" id="yt-time">0:00</span>
             </div>
+            <a href="https://youtu.be/7XvYvyFd0Oc" target="_blank" rel="noopener noreferrer" class="yt-link">
+                ▶ Otwórz w YouTube
+            </a>
         </div>
     </div>
 </section>
 
 <style>
-.frag-audio-controls {
+.yt-audio-controls {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -1314,10 +1321,10 @@
     margin: 1.5rem auto 1rem;
     max-width: 420px;
 }
-.frag-play-btn {
+.yt-play-btn {
     background: none;
     border: none;
-    color: var(--color-gold, #c9a84c);
+    color: var(--gold, #c9a84c);
     cursor: pointer;
     padding: 0;
     display: flex;
@@ -1325,8 +1332,8 @@
     flex-shrink: 0;
     transition: transform 0.2s;
 }
-.frag-play-btn:hover { transform: scale(1.15); }
-.frag-progress-wrap {
+.yt-play-btn:hover { transform: scale(1.15); }
+.yt-progress-wrap {
     flex: 1;
     height: 4px;
     background: rgba(255,255,255,0.15);
@@ -1334,31 +1341,69 @@
     cursor: pointer;
     position: relative;
 }
-.frag-progress-bar {
+.yt-progress-bar {
     height: 100%;
     width: 0%;
-    background: var(--color-gold, #c9a84c);
+    background: var(--gold, #c9a84c);
     border-radius: 2px;
     transition: width 0.3s linear;
 }
-.frag-time {
+.yt-time {
     font-size: 0.85rem;
     color: rgba(255,255,255,0.6);
-    min-width: 5.5em;
+    min-width: 3.2em;
     text-align: right;
     font-variant-numeric: tabular-nums;
 }
+.yt-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gold, #c9a84c);
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+.yt-link:hover { opacity: 1; text-decoration: underline; }
 </style>
 
 <script>
 (function() {
-    var audio    = document.getElementById('audio-fragment');
-    var playBtn  = document.getElementById('frag-play-btn');
-    var playIcon = document.getElementById('frag-play-icon');
-    var pauseIcon= document.getElementById('frag-pause-icon');
-    var bar      = document.getElementById('frag-progress-bar');
-    var timeEl   = document.getElementById('frag-time');
-    var progWrap = document.getElementById('frag-progress-wrap');
+    // Ładowanie YouTube IFrame API
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+
+    var player, isPlaying = false, pollTimer;
+    var playBtn   = document.getElementById('yt-play-btn');
+    var playIcon  = document.getElementById('play-icon');
+    var pauseIcon = document.getElementById('pause-icon');
+    var bar       = document.getElementById('yt-progress-bar');
+    var timeEl    = document.getElementById('yt-time');
+    var progWrap  = document.getElementById('yt-progress-wrap');
+
+    window.onYouTubeIframeAPIReady = function() {
+        player = new YT.Player('yt-player', {
+            events: {
+                onStateChange: function(e) {
+                    if (e.data === YT.PlayerState.PLAYING) {
+                        isPlaying = true;
+                        toggleIcons(true);
+                        startPoll();
+                    } else {
+                        isPlaying = false;
+                        toggleIcons(false);
+                        stopPoll();
+                    }
+                }
+            }
+        });
+    };
+
+    function toggleIcons(playing) {
+        playIcon.style.display  = playing ? 'none' : 'block';
+        pauseIcon.style.display = playing ? 'block' : 'none';
+    }
 
     function fmt(s) {
         var m = Math.floor(s / 60);
@@ -1366,40 +1411,33 @@
         return m + ':' + (sec < 10 ? '0' : '') + sec;
     }
 
-    function updateIcons() {
-        var playing = !audio.paused;
-        playIcon.style.display  = playing ? 'none' : 'block';
-        pauseIcon.style.display = playing ? 'block' : 'none';
+    function startPoll() {
+        stopPoll();
+        pollTimer = setInterval(function() {
+            if (!player || !player.getDuration) return;
+            var dur = player.getDuration();
+            var cur = player.getCurrentTime();
+            bar.style.width = (dur ? (cur / dur * 100) : 0) + '%';
+            timeEl.textContent = fmt(cur);
+        }, 300);
     }
+    function stopPoll() { clearInterval(pollTimer); }
 
     playBtn.addEventListener('click', function() {
-        if (audio.paused) { audio.play(); }
-        else { audio.pause(); }
-    });
-
-    audio.addEventListener('play', updateIcons);
-    audio.addEventListener('pause', updateIcons);
-    audio.addEventListener('ended', updateIcons);
-
-    audio.addEventListener('timeupdate', function() {
-        var dur = audio.duration || 0;
-        var cur = audio.currentTime || 0;
-        bar.style.width = (dur ? (cur / dur * 100) : 0) + '%';
-        timeEl.textContent = fmt(cur) + ' / ' + fmt(dur);
-    });
-
-    audio.addEventListener('loadedmetadata', function() {
-        timeEl.textContent = '0:00 / ' + fmt(audio.duration);
+        if (!player || !player.getPlayerState) return;
+        if (isPlaying) { player.pauseVideo(); }
+        else { player.playVideo(); }
     });
 
     progWrap.addEventListener('click', function(e) {
-        if (!audio.duration) return;
+        if (!player || !player.getDuration) return;
         var rect = progWrap.getBoundingClientRect();
         var pct = (e.clientX - rect.left) / rect.width;
-        audio.currentTime = pct * audio.duration;
+        player.seekTo(pct * player.getDuration(), true);
     });
 })();
 </script>
+   
 
 
     
