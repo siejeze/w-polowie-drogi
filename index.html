@@ -198,17 +198,17 @@
         nav a:hover { color: var(--color-accent-glow); }
 
        .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #ffffff;     /* jasny kolor, żeby był widoczny */
-    font-size: 1.6rem;
-    cursor: pointer;
-    position: absolute;
-    right: 1.5rem;
-    top: 1rem;
-    z-index: 999;       /* żeby był nad tłem hero */
-}
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;     /* jasny kolor, żeby był widoczny */
+            font-size: 1.6rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            z-index: 999;       /* żeby był nad tłem hero */
+        }
 
         /* ============================================
            HERO SECTION
@@ -306,8 +306,8 @@
         }
 
        .hero-cover {
-    height: 80vh;
-    width: auto;
+            height: 80vh;
+            width: auto;
             border: 1px solid rgba(180, 170, 140, 0.15);
             box-shadow: 
                 0 0 40px rgba(0,0,0,0.6),
@@ -449,17 +449,17 @@
         }
 
         .about-text {
-        font-family: var(--font-body);
-        font-size: 1.15rem;
-        font-weight: 300;
-        line-height: 1.9;
-        color: var(--color-text);
-        text-align: left;
-        max-width: 580px;
-        margin: 0 auto;
-        padding-left: 1.8rem;
-        border-left: 1px solid rgba(184, 164, 114, 0.25);
-}
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: var(--color-text);
+            text-align: left;
+            max-width: 580px;
+            margin: 0 auto;
+            padding-left: 1.8rem;
+            border-left: 1px solid rgba(184, 164, 114, 0.25);
+        }
 
         .about-text p + p {
             margin-top: 1.5rem;
@@ -650,7 +650,7 @@
 
         .location-desc {
             font-family: var(--font-body);
-            font-size: 0.85rem;
+            font-size: 1rem; /* Powiększono z 0.85rem na 1rem */
             color: var(--color-text-dim);
             font-style: italic;
         }
@@ -1057,21 +1057,14 @@
 
 <body>
 
-<!-- =============================================
-     FOG EFFECT
-     ============================================= -->
 <div class="fog-container">
     <div class="fog-layer"></div>
     <div class="fog-layer"></div>
     <div class="fog-layer"></div>
 </div>
 
-<!-- =============================================
-     CONTENT
-     ============================================= -->
 <div class="content-wrap">
 
-    <!-- NAVIGATION -->
     <nav id="navbar">
         <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">☰</button>
         <ul>
@@ -1084,11 +1077,7 @@
         </ul>
     </nav>
 
-    <!-- =============================================
-         HERO
-         ============================================= -->
- 
-<section class="hero" id="hero">
+    <section class="hero" id="hero">
     <canvas id="dust" class="hero-dust"></canvas>
     <div class="hero-content">
         <div class="hero-trilogy">
@@ -1109,21 +1098,16 @@
                 <span class="hero-ghost-label">Tom III</span>
             </div>
         </div>
-        <!-- <div class="hero-tagline">Konin, lato roku pańskiego 1737</div> -->
         <h1 class="hero-title">W połowie drogi</h1>
         <div class="hero-subtitle">Tom I · Regestrum Sacrum</div>
         <p class="hero-hook">
-            <!-- ZMIEŃ TEN TEKST NA SWÓJ HOOK / TAGLINE -->
             Mroczny kryminał historyczny o tajemnicach, które nie dają się pogrzebać
         </p>
         <a href="#order" class="hero-cta">Zamów egzemplarz w przedsprzedaży</a>
     </div>
 </section>
 
- <!-- =============================================
-         TRAILER WIDEO
-         ============================================= -->
-<section class="trailer" id="trailer">
+ <section class="trailer" id="trailer">
         <div class="container reveal">
             <div class="section-label">Obejrzyj</div>
             <h2 class="section-title">Trailer</h2>
@@ -1136,9 +1120,6 @@
     </section>
 
     
-    <!-- =============================================
-         O KSIĄŻCE
-         ============================================= -->
     <section class="about-book" id="about">
         <div class="container reveal">
             <div class="section-label">Konin, lato 1737</div>
@@ -1166,10 +1147,7 @@
         </div>
     </section>
 
-    <!-- =============================================
-         FRAGMENT DO POCZYTANIA
-         ============================================= -->
-  <section class="excerpt" id="excerpt">
+    <section class="excerpt" id="excerpt">
     <div class="container reveal">
         <div class="section-label">Zajrzyj do środka</div>
         <h2 class="section-title">Fragment</h2>
@@ -1199,9 +1177,6 @@ W połowie drogi.
 </section>
    
    
-    <!-- =============================================
-         ŚLADAMI GORYCZKI — MIEJSCA Z KSIĄŻKI
-         ============================================= -->
     <section class="locations" id="locations">
         <div class="container--wide reveal">
             <div class="section-label">Śladami Szymona Goryczki</div>
@@ -1259,13 +1234,7 @@ W połowie drogi.
                 </a>
             </div>
 
-         <!--   <div class="location-card">
-                    <span class="location-icon">🌊</span>
-                    <div class="location-name">Warta</div>
-                    <div class="location-desc">To od niej wszystko się zaczęło</div>
-                </div>-->
-
-            <div style="text-align: center; margin-top: 2.5rem;">
+         <div style="text-align: center; margin-top: 2.5rem;">
                 <a href="spacer.html" style="display: inline-block; font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-accent-glow); border: 1px solid var(--color-accent-dim); padding: 0.9rem 2.5rem; text-decoration: none; transition: all 0.4s ease;">
                     Wyrusz na spacer → 8 przystanków, 2 km
                 </a>
@@ -1274,10 +1243,7 @@ W połowie drogi.
     </section>
 
 
-    <!-- =============================================
-     AUDIO — POSŁUCHAJ FRAGMENTU
-     ============================================= -->
-<section class="audio-section" id="audio">
+    <section class="audio-section" id="audio">
     <div class="container reveal">
         <div class="section-label">Posłuchaj</div>
         <h2 class="section-title">Fragment czytany</h2>
@@ -1306,10 +1272,7 @@ W połowie drogi.
                 </div>
                 <span class="yt-time" id="yt-time">0:00</span>
             </div>
-            <!--<a href="https://youtu.be/7XvYvyFd0Oc" target="_blank" rel="noopener noreferrer" class="yt-link">
-                ▶ Otwórz w YouTube
-            </a>-->
-        </div>
+            </div>
     </div>
 </section>
 
@@ -1441,14 +1404,11 @@ W połowie drogi.
     });
 })();
 </script>
-   
+    
 
 
     
-   <!-- =============================================
-         O AUTORCE
-         ============================================= -->
-    <section class="author" id="author">
+   <section class="author" id="author">
         <div class="container reveal">
             <div class="section-label">Kilka słów</div>
             <h2 class="section-title">O Autorce</h2>
@@ -1474,9 +1434,6 @@ W połowie drogi.
             </div>
         </div>
     </section>
-    <!-- =============================================
-         SERIA — 3 TOMY
-         ============================================= -->
     <section class="series" id="series">
         <div class="container reveal">
             <div class="section-label">Trylogia</div>
@@ -1491,7 +1448,6 @@ W połowie drogi.
                 </div>
                 <div class="series-vol">
                     <div class="series-vol-number">Tom II</div>
-                    <!-- ZMIEŃ TYTUŁ GDY BĘDZIE ZNANY -->
                     <div class="series-vol-title">•••</div>
                     <div class="series-vol-status">W przygotowaniu</div>
                 </div>
@@ -1504,10 +1460,7 @@ W połowie drogi.
         </div>
     </section>
 
-   <!-- =============================================
-         FORMULARZ ZAMÓWIENIA
-         ============================================= -->
-    <section class="contact" id="order">
+   <section class="contact" id="order">
         <div class="container reveal">
           <div class="section-label">Napisz do mnie</div>
             <h2 class="section-title">Kontakt i zamówienia w przedsprzedaży</h2>
@@ -1551,20 +1504,13 @@ W połowie drogi.
             </form>
         </div>
     </section>
-    <!-- =============================================
-         FOOTER
-         ============================================= -->
     <footer>
         <div class="footer-socials">
-            <!-- DODAJ SWOJE LINKI DO SOCIAL MEDIA
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a> -->
             <a href="#order">Kontakt</a>
         </div>
         <p>© 2025 Anna Strzelecka · W Połowie Drogi</p>
     </footer>
 
-    <!-- MUZYKA W TLE — zmień "music.mp3" jeśli plik ma inną nazwę -->
     <audio id="bg-music" loop preload="auto">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
@@ -1575,12 +1521,7 @@ W połowie drogi.
         <span class="music-hint">Kliknij, aby włączyć muzykę</span>
     </button>
 
-</div><!-- /content-wrap -->
-
-<!-- =============================================
-     JAVASCRIPT
-     ============================================= -->
-<script>
+</div><script>
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
