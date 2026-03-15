@@ -127,7 +127,8 @@
            TIMELINE / ROUTE
            ============================================ */
         .route {
-            padding: 3rem 1.5rem 5rem;
+            /* ZMNIEJSZONY DOLNY PADDING Z 5rem na 1.5rem */
+            padding: 3rem 1.5rem 1.5rem;
             background: linear-gradient(180deg, #1e3328 0%, #1a2a22 20%, #201f18 50%, #182230 80%, #0c1210 100%);
         }
 
@@ -289,7 +290,8 @@
            ============================================ */
         .map-section {
             text-align: center;
-            padding: 3rem 1.5rem 4rem;
+            /* ZMNIEJSZONY GÓRNY PADDING Z 3rem na 0.5rem */
+            padding: 0.5rem 1.5rem 4rem;
             background: linear-gradient(180deg, #0c1210 0%, var(--color-bg-deep) 100%);
         }
 
@@ -384,7 +386,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header class="page-header">
         <a href="index.html" class="back-link">← Wróć do strony książki</a>
         <h1 class="page-title">Śladami Szymona Goryczki</h1>
@@ -394,7 +395,6 @@
         </p>
     </header>
 
-    <!-- INTRO -->
     <div class="route-intro">
         <p>
             Ta trasa prowadzi przez osiem kluczowych miejsc z powieści „W połowie drogi”: 
@@ -604,18 +604,16 @@
             </div>
         </div>
 
-    </div></div>```
+    </div></div>
 
-    <!-- MAP LINK -->
-   <div class="map-section">
+    <div class="map-section">
         <a href="https://www.google.com/maps/dir/Franciscan+Monastery+in+Konin,+Reformacka+2,+Konin,+Poland/Church+of+St.+Bartholomew+in+Konin,+Ko%C5%9Bcielna+1,+Konin,+Poland/Dom+Zeme%C5%82ki,+plac+Wolno%C5%9Bci+16,+Konin,+Polska/plac+Zamkowy,+Konin,+Polska/Bulwar+Nadwarcia%C5%84ski,+Konin,+Polska/data=!4m32!4m31!1m5!1m1!19sChIJOasDbGoxG0cRdbPns6Zs9p8!2m2!1d18.2557725!2d52.2035354!1m5!1m1!19sChIJU91oxUMxG0cRGD8VOKlF0PY!2m2!1d18.2549018!2d52.209019299999994!1m5!1m1!19sChIJ8WzGcEQxG0cRVtc1v2NIS7o!2m2!1d18.254930599999998!2d52.211378499999995!1m5!1m1!19sChIJKSxVnUMxG0cRJEYtJLpunOg!2m2!1d18.252668699999997!2d52.2109233!1m5!1m1!19sChIJ8awjgFwxG0cRh-1ZyvlVpNw!2m2!1d18.252635299999998!2d52.212819599999996!3e2" target="_blank" class="map-link">
             Otwórz trasę w Google Maps
         </a>
         <p class="map-note">Cała trasa to ok. 1,8 km — około 25 minut spokojnego spaceru (plus czas na zwiedzanie)</p>
     </div>
 
-<!-- O KONINIE W POWIEŚCI -->
-    <div style="padding: 3rem 1.5rem 3rem; background: linear-gradient(180deg, #0c1210 0%, #1a2218 50%, #0c1210 100%);">
+<div style="padding: 3rem 1.5rem 3rem; background: linear-gradient(180deg, #0c1210 0%, #1a2218 50%, #0c1210 100%);">
         <div style="max-width: 600px; margin: 0 auto;" class="reveal">
             <div style="font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.4em; text-transform: uppercase; color: #bdd098; text-align: center; margin-bottom: 0.6rem;">Od autorki</div>
             <h2 style="font-family: 'Cinzel', serif; font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 400; color: #d4cbb8; text-align: center; letter-spacing: 0.06em; margin-bottom: 1rem;">O Koninie w powieści</h2>
@@ -637,12 +635,10 @@
         </div>
     </div>
     
-    <!-- FOOTER -->
     <footer>
         <p><a href="index.html">W Połowie Drogi</a> · Anna Strzelecka · © 2025</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
         // Toggle stop cards
         function toggleStop(header) {
